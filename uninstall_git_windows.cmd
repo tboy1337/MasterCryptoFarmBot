@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "possibleInstalledPaths=C:\Program Files\Git C:\Program Files (x86)\Git C:\git"
+set "possibleInstalledPaths=C:\Program Files\Git C:\Program Files (x86)\Git C:\git %userprofile%\AppData\Local\Programs\Git"
 set gitFound=false
 
 echo Checking for GIT install.
