@@ -28,7 +28,7 @@ services:
       - PYTHONUNBUFFERED=1
       - TZ=${TZ:-Europe/London}
     ports:
-      - "1337:1337"
+      - "3232:3232"
     init: true
     network_mode: bridge
     healthcheck:
