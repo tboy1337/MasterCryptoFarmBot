@@ -1,3 +1,8 @@
+# Create a .env file in the same directory as docker-compose.yml to set environment variables like MCF_PATH and TZ if you want to customize them otherwise defaults will be used e.g.:
+# MCFB_PATH=C:\path\to\your\MCFB
+# TZ=Your/Timezone
+# For Synology NAS you need to create the directory path manually in your system because docker cannot create folders in Synology.
+
 services:
   mcfb:
     build:
@@ -8,10 +13,10 @@ services:
             apt-get install -y --no-install-recommends git && \
             apt-get clean && \
             rm -rf /var/lib/apt/lists/* && \
-            useradd -m mcfuser
-        USER mcfuser
+            useradd -m mcfbuser
+        USER mcfbuser
         WORKDIR /mcfb
-        COPY --chown=mcfuser:mcfuser entrypoint.sh /entrypoint.sh
+        COPY --chown=mcfbuser:mcfbuser entrypoint.sh /entrypoint.sh
         RUN chmod +x /entrypoint.sh
         ENTRYPOINT ["/entrypoint.sh"]
     image: mcfb:latest
