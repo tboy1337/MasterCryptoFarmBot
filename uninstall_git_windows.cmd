@@ -22,7 +22,8 @@ for %%G in (%possibleInstalledPaths%) do (
 )
 
 if "!gitFound!"=="false" (
-    echo No GIT install found.  Nothing to uninstall.
+    echo No GIT install found.
+    echo Nothing to uninstall.
 )
 
 timeout /t 5
