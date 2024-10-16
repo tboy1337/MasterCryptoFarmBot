@@ -1,10 +1,5 @@
-# Create a .env file in the same directory as docker-compose.yml to set environment variables like MCF_PATH and TZ if you want to customize them otherwise defaults will be used e.g.:
-# MCF_PATH=C:\path\to\your\MCF
-# TZ=Your/Timezone
-# For Synology NAS you need to create the directory path manually in your system because docker cannot create folders in Synology.
-
 services:
-  mcf:
+  mcfb:
     build:
       context: .
       dockerfile: |
@@ -15,15 +10,15 @@ services:
             rm -rf /var/lib/apt/lists/* && \
             useradd -m mcfuser
         USER mcfuser
-        WORKDIR /MasterCryptoFarmBot
+        WORKDIR /mcfb
         COPY --chown=mcfuser:mcfuser entrypoint.sh /entrypoint.sh
         RUN chmod +x /entrypoint.sh
         ENTRYPOINT ["/entrypoint.sh"]
-    image: mcf:latest
-    container_name: mcf
+    image: mcfb:latest
+    container_name: MasterCryptoFarmBot
     restart: unless-stopped
     volumes:
-      - ${MCF_PATH:-~/.MCF/container}:/MasterCryptoFarmBot
+      - ${MCF_PATH:-~/.MCF/container}:/mcfb
     environment:
       - PYTHONUNBUFFERED=1
       - TZ=${TZ:-Europe/London}
@@ -32,10 +27,11 @@ services:
     init: true
     network_mode: bridge
     healthcheck:
-      test: ["CMD", "python", "-c", "import os, sys; sys.exit(0 if 'main.py' in os.listdir() else 1)"]
+      test: ["CMD-SHELL", "test -f /mcfb/main.py || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 60s
 
 configs:
   entrypoint_script:
@@ -46,7 +42,7 @@ configs:
           echo 'Cloning repository ...'
           git clone https://github.com/masterking32/MasterCryptoFarmBot.git ./
       fi
-      git config --global --add safe.directory /MasterCryptoFarmBot
+      git config --global --add safe.directory /mcfb
       if [ ! -f config.py ]; then
           echo 'Copying config from sample ...'
           cp config.py.sample config.py
