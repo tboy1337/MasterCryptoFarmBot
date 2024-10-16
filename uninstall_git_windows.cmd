@@ -1,6 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
+echo Checking for GIT install.
+
 set "possibleInstalledPaths=C:\Program Files\Git C:\Program Files (x86)\Git C:\git"
 set gitFound=false
 
@@ -9,7 +11,7 @@ for %%G in (%possibleInstalledPaths%) do (
         taskkill /F /IM bash.exe /T >nul 2>&1
         taskkill /F /IM putty* /T >nul 2>&1
         
-        echo Removing Git from "%%G"
+        echo Removing GIT from "%%G"
 
         for %%U in ("%%G\unins*.exe") do (
             "%%U" /SP- /VERYSILENT /SUPPRESSMSGBOXES /FORCECLOSEAPPLICATIONS
@@ -20,5 +22,5 @@ for %%G in (%possibleInstalledPaths%) do (
 )
 
 if "!gitFound!"=="false" (
-    echo No Git installation found. Nothing to uninstall.
+    echo No GIT install found. Nothing to uninstall.
 )
