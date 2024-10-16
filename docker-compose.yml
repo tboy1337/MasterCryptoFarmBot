@@ -23,7 +23,7 @@ services:
     container_name: MasterCryptoFarmBot
     restart: unless-stopped
     volumes:
-      - ${MCF_PATH:-~/.MCF/container}:/mcfb
+      - ${MCFB_PATH:-~/.MCFB/container}:/mcfb
     environment:
       - PYTHONUNBUFFERED=1
       - TZ=${TZ:-Europe/London}
