@@ -1,10 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo Checking for GIT install.
-
 set "possibleInstalledPaths=C:\Program Files\Git C:\Program Files (x86)\Git C:\git"
 set gitFound=false
+
+echo Checking for GIT install.
 
 for %%G in (%possibleInstalledPaths%) do (
     if exist "%%G" (
