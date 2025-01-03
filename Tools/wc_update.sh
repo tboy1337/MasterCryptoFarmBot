@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo Updating wallet_connector...
+git -C '/MasterCryptoFarmBot/wallet_connector' pull
+
+echo Updating wc_blum...
+git -C '/MasterCryptoFarmBot/wallet_connector/modules/wc_blum' pull
+
+echo Updating wc_notpixel...
+git -C '/MasterCryptoFarmBot/wallet_connector/modules/wc_notpixel' pull
+
+echo Updating wc_paws...
+git -C '/MasterCryptoFarmBot/wallet_connector/modules/wc_paws' pull
