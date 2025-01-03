@@ -1,21 +1,26 @@
 @echo off
 
 echo Updating wallet_connector...
-cd /d "C:\MasterCryptoFarmBot\wallet_connector"
+cd ..
+cd wallet_connector
 git pull
 
 echo Updating wc_blum...
-cd /d "C:\MasterCryptoFarmBot\wallet_connector\modules\wc_blum"
+cd modules\wc_blum
 git pull
 
 echo Updating wc_notpixel...
-cd /d "C:\MasterCryptoFarmBot\wallet_connector\modules\wc_notpixel"
+cd ..
+cd modules\wc_notpixel
 git pull
 
 echo Updating wc_paws...
-cd /d "C:\MasterCryptoFarmBot\wallet_connector\modules\wc_paws"
+cd ..
+cd modules\wc_paws
 git pull
 
-cd /d "%~dp0"
+cd ..
+cd ..
+cd ..
 
 exit
