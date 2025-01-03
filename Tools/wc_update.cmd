@@ -18,7 +18,6 @@ echo Updating wc_paws...
 cd ..
 cd modules\wc_paws
 git pull
-
 cd ..
 cd ..
 cd ..
